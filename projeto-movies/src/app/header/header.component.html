@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="javascript:void(0);">Filmes</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a [routerLink]="['/filmes']" routerLinkActive="router-link-active" class="nav-link"
+                    href="javascript:void(0);">Início <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdownMenuLink" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="javascript:void(0);">
+                        Filmes
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0);">
+                        Amigos
+                    </a>
+                    <a class="dropdown-item" href="javascript:void(0);">
+                        Minhas Indicações
+                    </a>
+                </div>
+            </li>
+        </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="O que deseja assistir?" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+
+        <div class="navbar-text">
+            <div class="dropdown dropleft">
+                <span class="dropdown-toggle click" id="ddlUsuario" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="fa fa-user"></i>
+                    Olá, {{nome}}
+                </span>
+                <div class="dropdown-menu" aria-labelledby="ddlUsuario">
+                    <button class="dropdown-item click" type="button">
+                        <i class="fa fa-pencil fa-fw"></i>
+                        &nbsp;Perfil
+                    </button>
+                    <button class="dropdown-item click" type="button">
+                        <i class="fa fa-sign-out fa-fw"></i>
+                        &nbsp;Sair
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</nav>

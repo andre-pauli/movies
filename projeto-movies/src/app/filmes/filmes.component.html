@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Filmes</title>
+</head>
+
+<body>
+
+    <form class="form-inline my-2 my-lg-0">
+        <input name="title" [(ngModel)]="title" class="form-control mr-sm-2" type="text"
+            placeholder="O que deseja assistir?" aria-label="Search" style=" width: 500px; 
+               margin-left: 80px;" #f="ngModel" required>
+        <button (click)="findByTitle()" class="btn btn-outline-success my-2 my-sm-0" type="submit"
+            [disabled]="!f.valid">Buscar</button>
+    </form>
+
+    <div class="row" *ngFor="let filme of filmes" style="display: inline-block;">
+        <div class="col-md-10">
+            <mv-filme [filme]="filme"></mv-filme>
+        </div>
+    </div>
+    <br><br>
+    <button (click)="findInApi()" style="border-top: 500px; " class="btn btn-dark btn-lg btn-block"
+        type="submit">Mais</button>
+
+</body>
+
+</html>

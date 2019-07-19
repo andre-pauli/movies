@@ -1,0 +1,16 @@
+/* Retirar esta classe, apenas exemplo */
+.invalid-feedback {
+    display: block !important;
+}
+/* Retirar esta classe, apenas exemplo */
+
+
+
+
+.invalid-feedback p {
+    margin-bottom: -2px !important;
+}
+  
+.invalid-feedback p:before {
+    content: "• "
+}

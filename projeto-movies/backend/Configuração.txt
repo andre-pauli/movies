@@ -1,0 +1,7 @@
+Para converter sempre um arquivo de ts para js utilizamos o comando abaixo:
+tsc -w
+ele fica ouvindo o arquivo TS e converte para JS de acordo com as configurações applicadas no arquivo tsconfig.json
+
+
+PARA MONITORAR O BACKEND DE FORMA AUTOMÁTICA BASTA RODAR O CÓDIGO ABAIXO:
+nodemon --watch backend backend/dist/server.js
