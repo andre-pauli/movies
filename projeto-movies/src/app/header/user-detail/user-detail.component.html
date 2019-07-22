@@ -1,0 +1,32 @@
+<div class="navbar-text">
+    <div class="dropdown dropleft">
+        <span class="dropdown-toggle click" id="ddlUsuario" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="true">
+            <i class="fa fa-user"></i>
+            Olá, {{user}}
+        </span>
+        <div class="dropdown-menu" aria-labelledby="ddlUsuario">
+            <button class="dropdown-item click" type="button">
+                <i class="fa fa-pencil fa-fw"></i>
+                &nbsp;Perfil
+            </button>
+            <button class="dropdown-item click" type="button">
+                <i class="fa fa-sign-out fa-fw"></i>
+                &nbsp;Sair
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+        <li class="user user-menu">
+            <span>
+                Olá, {{name}} | <a>Sair</a>
+            </span>
+            <ng-template #notLoggedIn>
+                <a (click)="login()">Entrar</a>
+            </ng-template>
+        </li>
+    </ul>
+</div> -->

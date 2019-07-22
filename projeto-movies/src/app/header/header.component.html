@@ -34,26 +34,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
         </form>
 
-        <div class="navbar-text">
-            <div class="dropdown dropleft">
-                <span class="dropdown-toggle click" id="ddlUsuario" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="fa fa-user"></i>
-                    Olá, {{nome}}
-                </span>
-                <div class="dropdown-menu" aria-labelledby="ddlUsuario">
-                    <button class="dropdown-item click" type="button">
-                        <i class="fa fa-pencil fa-fw"></i>
-                        &nbsp;Perfil
-                    </button>
-                    <button class="dropdown-item click" type="button">
-                        <i class="fa fa-sign-out fa-fw"></i>
-                        &nbsp;Sair
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
+        <mv-user-detail></mv-user-detail>
+        
     </div>
 </nav>

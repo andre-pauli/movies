@@ -12,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import br.com.simples.api_movies.repositorys.UserRepository;
 
 //ESSA ANOTAÇÃO HABILITA O SPRING SECURITY (MÓDULO DE SEGURANÇA).
 @EnableWebSecurity
@@ -22,6 +25,12 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AutenticacaoService autenticacaoService;
+
+	@Autowired
+	private TokenService tokenService;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	@Bean
@@ -52,7 +61,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 				.and().csrf().disable()
 				// estamos dizendo abaixo a politica de criação será stateless, ou seja,via
 				// token
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.addFilterBefore(new AutenticacaoTokenFilter(tokenService, userRepository),
+						UsernamePasswordAuthenticationFilter.class);
 	}
 
 	// CONFIGURAÇÃO DE RECURSOS ESTÁTICOS -> REQUISIÇÕES PARA (JS, CSS, IMAGENS).
