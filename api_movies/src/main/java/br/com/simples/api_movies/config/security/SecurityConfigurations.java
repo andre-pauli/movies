@@ -54,9 +54,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				// define qual url(e também o método que desejamos(opcional)) filtraremos e
 				// passaremos a permissão
-				.antMatchers(HttpMethod.GET, "/home").permitAll().antMatchers(HttpMethod.POST, "/auth").permitAll()
+				.antMatchers(HttpMethod.GET, "/home").permitAll().antMatchers(HttpMethod.POST, "/login").permitAll()
 				// diz que todas as outras requisições precisarão de autenticação.
-				.anyRequest().authenticated()
+				.anyRequest().permitAll()
 				// desabilita o cros
 				.and().csrf().disable()
 				// estamos dizendo abaixo a politica de criação será stateless, ou seja,via

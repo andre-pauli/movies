@@ -1,39 +1,32 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { MOVIE_API } from '../app.api';
+import { Observable } from 'rxjs';
 import { User } from './user.model';
-import { Router, NavigationEnd } from '@angular/router';
 
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 const apiUrl = MOVIE_API;
 
 @Injectable()
 export class LoginService {
 
-    user: User
-    lastUrl: string
 
-    constructor(private http: HttpClient, private router: Router) {        
-    }
 
-    isLoggedIn(): boolean {
-        return this.user !== undefined
+    constructor(private http: HttpClient) {
+
     }
 
     login(email: string, password: string): Observable<User> {
-        return this.http.post<User>(`${MOVIE_API}/auth`, { email: email, password: password })
-            .lift(user => this.user = user)
-    }
+        console.log(email);
+        console.log(password);
 
-    handleLogin(path: string = this.lastUrl) {
-        this.router.navigate(['/login', btoa(path)])
-    }
+        const body = {
+            email: email,
+            password: password
+        };
 
-    logout() {
-        this.user = undefined
+        console.log(`${apiUrl}/login`, body);
+
+        return this.http.post<User>(`${apiUrl}/login`, body)
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,9 @@ import br.com.simples.api_movies.config.security.TokenService;
 import br.com.simples.api_movies.models.TokenDto;
 import br.com.simples.api_movies.ws.forms.FormLogin;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/login")
 public class AutenticacaoController {
 
 	// para fazer a autenticação manual, devemos utilizar a classe do spring abaixo
@@ -30,7 +32,8 @@ public class AutenticacaoController {
 
 	@Autowired
 	private TokenService tokenService;
-
+	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid FormLogin formLogin) {

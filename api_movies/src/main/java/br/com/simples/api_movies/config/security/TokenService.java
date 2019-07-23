@@ -25,8 +25,11 @@ public class TokenService {
 
 		// está retornando um método da classe Jwts que podemos inserir parâmetros de
 		// execução para a geração do token.
+		
+		System.out.println("Novo token!");
 		return Jwts.builder().setIssuer("API do MOVIES").setSubject(username.getUsername().toString()).setIssuedAt(hoje)
 				.setExpiration(dataExpiracao).signWith(SignatureAlgorithm.HS256, secret).compact();
+		
 	}
 
 	public boolean isTokenValid(String token) {
