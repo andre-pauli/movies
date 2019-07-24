@@ -11,12 +11,12 @@ export class UserDetailComponent implements OnInit {
   constructor(private loginService: LoginService) { }
 
   // user(): User {
-  //   return this.loginService.user
-  // }
+  //     return this.loginService.user     
+  // }  
 
-  user: string = "André"
 
   ngOnInit() {
+
   }
 
 }

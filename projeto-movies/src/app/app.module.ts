@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/loginService';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InputComponent } from './shared/input/input.component';
+import { LoggedInGuard } from './login/loggedin.guard';
 
 
 
@@ -41,7 +42,9 @@ import { InputComponent } from './shared/input/input.component';
   providers: [FilmesService, 
               FormsModule, 
               LoginService, 
-              NgModule],
+              NgModule,
+              LoggedInGuard
+            ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

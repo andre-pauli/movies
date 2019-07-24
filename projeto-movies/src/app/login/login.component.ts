@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { LoginService } from './loginService';
+import { User } from './user.model';
 @Component({
   selector: 'mv-login',
   templateUrl: './login.component.html'
@@ -8,6 +9,7 @@ import { LoginService } from './loginService';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
+  user: User 
 
   constructor(private fb: FormBuilder,
     private loginService: LoginService) { }
@@ -22,8 +24,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value.email,
       this.loginForm.value.password)
-      .subscribe(user => console.log(user))
+      .subscribe(user=> alert(`Bem vindo(a) ${user.name}, seu token é: ${user.token}`),
+                 response=> alert('Dados inválidos'))
   }
+
+
 
 
 }

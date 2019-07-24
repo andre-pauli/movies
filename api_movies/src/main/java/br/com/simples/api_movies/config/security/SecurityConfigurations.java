@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import br.com.simples.api_movies.repositorys.UserRepository;
 
@@ -20,7 +22,6 @@ import br.com.simples.api_movies.repositorys.UserRepository;
 @EnableWebSecurity
 //DIZ PARA O COMPILADOR DO SPRING QUE VÃO SER APLICADAS CONFIGURAÇÕES NESSA CLASSE.
 @Configuration
-
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -54,7 +55,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				// define qual url(e também o método que desejamos(opcional)) filtraremos e
 				// passaremos a permissão
-				.antMatchers(HttpMethod.GET, "/home").permitAll().antMatchers(HttpMethod.POST, "/login").permitAll()
+				.antMatchers(HttpMethod.GET, "/home").permitAll().antMatchers("/login").permitAll()
 				// diz que todas as outras requisições precisarão de autenticação.
 				.anyRequest().permitAll()
 				// desabilita o cros
