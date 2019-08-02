@@ -1,5 +1,7 @@
 <div class="card" style="width: 21rem; height: 40rem; margin: 5rem;">
-    <img class="card-img-top" [src]="filme.Poster" alt="Card image cap">
+    <img *ngIf="filme.Poster != 'N/A'" class="card-img-top" [src]="filme.Poster" alt="Card image cap">
+    <img *ngIf="filme.Poster == 'N/A'" class="card-img-top" src="../../../assets/img/semImagem.jpeg"
+        alt="Card image cap">
     <div class="card-body">
         <h5 class="card-title">{{filme.Title}}</h5>
         <p class="card-text">{{filme.Year}}</p>

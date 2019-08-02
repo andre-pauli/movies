@@ -9,23 +9,29 @@
 </head>
 
 <body>
-
-    <form class="form-inline my-2 my-lg-0">
-        <input name="title" [(ngModel)]="title" class="form-control mr-sm-2" type="text"
-            placeholder="O que deseja assistir?" aria-label="Search" style=" width: 500px; 
+    <br>
+    <section class="content text-center">
+        <form class="form-inline my-2 my-lg-0">
+            <input name="title" [(ngModel)]="title" class="form-control mr-sm-2" type="text"
+                placeholder="O que deseja assistir?" aria-label="Search" style=" width: 500px; 
                margin-left: 80px;" #f="ngModel" required>
-        <button (click)="findByTitle()" class="btn btn-outline-success my-2 my-sm-0" type="submit"
-            [disabled]="!f.valid">Buscar</button>
-    </form>
-
+            <button (click)="findByTitle()" class="btn btn-dark my-2 my-sm-0" type="submit"
+                [disabled]="!f.valid">Buscar</button>
+        </form>
+    </section>
+    <br>
+    <div *ngIf="filmes?.length === 0" class="alert alert-danger" role="alert" style="text-align: center">
+        NENHUM TÍTULO ENCONTRADO
+    </div>
     <div class="row" *ngFor="let filme of filmes" style="display: inline-block;">
         <div class="col-md-10">
             <mv-filme [filme]="filme"></mv-filme>
         </div>
     </div>
     <br><br>
-    <button (click)="findInApi()" style="border-top: 500px; " class="btn btn-dark btn-lg btn-block"
-        type="submit">Mais</button>
+    <button *ngIf="filmes !== undefined && f.valid" (click)="findInApi()" style="border-top: 500px; "
+        class="btn btn-dark btn-lg btn-block" type="submit">Mais</button>
+    <br>
 
 </body>
 

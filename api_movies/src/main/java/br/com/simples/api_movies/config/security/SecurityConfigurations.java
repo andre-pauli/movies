@@ -13,8 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import br.com.simples.api_movies.repositorys.UserRepository;
 
@@ -51,14 +49,16 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	// DE ACESSO)
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		// servirá pra indicar os requests
 		http.authorizeRequests()
 				// define qual url(e também o método que desejamos(opcional)) filtraremos e
 				// passaremos a permissão
 				.antMatchers(HttpMethod.GET, "/home").permitAll().antMatchers("/login").permitAll()
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				// diz que todas as outras requisições precisarão de autenticação.
 				.anyRequest().permitAll()
-				// desabilita o cros
+				// desabilita o cors
 				.and().csrf().disable()
 				// estamos dizendo abaixo a politica de criação será stateless, ou seja,via
 				// token

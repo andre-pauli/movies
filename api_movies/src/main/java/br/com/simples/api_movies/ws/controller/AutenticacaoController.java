@@ -33,7 +33,6 @@ public class AutenticacaoController {
 	@Autowired
 	private TokenService tokenService;
 	
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<TokenDto> autenticar(@RequestBody @Valid FormLogin formLogin) {

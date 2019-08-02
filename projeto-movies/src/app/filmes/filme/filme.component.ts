@@ -12,7 +12,6 @@ export class FilmeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
   }
 
 }

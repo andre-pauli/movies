@@ -34,22 +34,30 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-
+		
+		// O browser irá fazer uma requisição OPTION para verificar se o domínio que está requisitando é permitido (CORS)
+		// se for OPTIONS, apenas retornamos um OK
+		// if ("OPTIONS".equals(request.getMethod())) {
+			//response.setStatus(HttpServletResponse.SC_OK);
+			//filterChain.doFilter(request, response);
+		// } else {
+			
 		// devemos novamente recuperar o token, pois estamos utilizando o modelo
 		// stateless, então a nossa api não sabe qual é
 		// o token do usuário, já que não salvamos nada no banco de dados, o user deve
 		// mandar o token em todas as próximas
 		// requisições.
-
+		
 		String token = recuperarToken(request);
-
+		
 		boolean valid = tokenService.isTokenValid(token);
 		if (valid) {
 			autenticarCliente(token);
 		}
-
+		
 		// diz para o spring que ele pode seguir com a requisição!
 		filterChain.doFilter(request, response);
+
 	}
 
 	private void autenticarCliente(String token) {

@@ -10,21 +10,24 @@ import { Router } from '@angular/router';
 const apiUrl = MOVIE_API;
 
 @Injectable()
-export class LoginService {    
+export class LoginService {
 
     user: User
-
 
     constructor(private http: HttpClient, private router: Router) {
 
     }
 
     isLoggedIn(): boolean {
-        return this.user !== undefined;
+        return localStorage.getItem('token_movies') !== null;
     }
 
     handleLogin() {
         this.router.navigate(['/login']);
+    }
+
+    userAtual(): User {
+        return { name: localStorage.getItem('nome_user'), email: 'bla', token: localStorage.getItem('token_movies') }
     }
 
 
@@ -37,6 +40,11 @@ export class LoginService {
             .pipe(
                 map(user => this.user = user)
             )
+
+    }
+
+    logout() {
+        this.user = undefined
     }
 
 }

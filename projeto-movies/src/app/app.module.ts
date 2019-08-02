@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +16,10 @@ import { LoginService } from './login/loginService';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { InputComponent } from './shared/input/input.component';
 import { LoggedInGuard } from './login/loggedin.guard';
+import { HomeComponent } from './home/home.component';
+import { AuthInterceptor } from './login/auth.interceptor';
+import { AmigosComponent } from './amigos/amigos.component';
+import { AmigoComponent } from './amigos/amigo/amigo.component';
 
 
 
@@ -29,7 +33,10 @@ import { LoggedInGuard } from './login/loggedin.guard';
     FilmeComponent,
     LoginComponent,
     UserDetailComponent,
-    InputComponent
+    InputComponent,
+    HomeComponent,
+    AmigosComponent,
+    AmigoComponent
   ],
   imports: [
     BrowserModule,
@@ -39,12 +46,13 @@ import { LoggedInGuard } from './login/loggedin.guard';
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
   ],
-  providers: [FilmesService, 
-              FormsModule, 
-              LoginService, 
-              NgModule,
-              LoggedInGuard
-            ],
+  providers: [FilmesService,
+    FormsModule,
+    LoginService,
+    NgModule,
+    LoggedInGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
