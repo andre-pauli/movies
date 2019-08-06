@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import br.com.simples.api_movies.models.Following;
+import br.com.simples.api_movies.models.Notification;
 import br.com.simples.api_movies.models.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
@@ -17,15 +18,14 @@ public interface UserRepository extends JpaRepository<User, String> {
 	Optional<User> findByEmail(String email);
 
 	Optional<User> findById(Long id);
-	
-	@Query(value = "SELECT u.name, " + 
-			"(group_users->>'text') " + 
+
+	@Query(value = "SELECT (group_users->>'descricao') as descricao, " + 
+			"(group_users->>'idNotification') as id " + 
 			"FROM tb_user as a " + 
-			"CROSS JOIN LATERAL json_array_elements (a.notifications\\:\\: json) group_users" + 
-			"  inner join tb_user u on u.id = (group_users ->> 'idNotification')\\:\\: BIGINT " + 
-			"where a.id = 1", nativeQuery = true)
-	List<Following> findAllUsers();
-	
+			"CROSS JOIN LATERAL json_array_elements (a.notifications\\:\\: json) group_users " + 
+			"  inner join tb_user u on u.id = (group_users ->> 'idNotification')\\:\\: BIGINT", nativeQuery = true)
+	List<Notification> findAllUsers();
+
 	@Query(value = "SELECT (group_users->>'id')\\:\\:integer as id, u.name " + "FROM tb_user as a "
 			+ "CROSS JOIN LATERAL json_array_elements (a.friends\\:\\:json) group_users "
 			+ "  inner join tb_user u on u.id = (group_users->> 'id')\\:\\:BIGINT "
